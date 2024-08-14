@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Materials
+{% endblock title %}
+
+{% block content %}
+<center>
+<a href="{% url 'add-material' %}" class="btn btn-success mb-4">Add Material</a>
+</center>
+<div class="row g-4">
+    {% for i in materials %}
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.name }}</h5>
+                <p class="card-text">Price: {{ i.price }}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'edit-material' i.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete-material' i.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

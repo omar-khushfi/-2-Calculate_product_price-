@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Product
+{% endblock title %}
+
+{% block content %}
+<center>
+<a href="{% url 'add-product' %}" class="btn btn-success mb-4">Add Product</a>
+</center>
+<div class="row g-4 justify-content-center">
+    {% for i in products %}
+    <div class="col-md-4 col-lg-3 col-sm-6">
+        <div class="card h-100 shadow-sm">
+            {% if i.product.image %}
+            <img src="{{i.product.image.url}}" class="card-img-top" alt="{{ i.product.name }}">
+            {% else %}
+            <img src= "{% static 'media/photo/home-bg.jpg' %}"  class="card-img-top" alt="No image available">
+            {% endif %}
+            
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ i.product.name }}</h5>
+                <p class="card-text mb-2">Cost Price: <strong>{{ i.calculated_cost }}</strong></p>
+                <p class="card-text mb-4">Selling Price: <strong>{{ i.product.selling_price }}</strong></p>
+                
+                <div class="mt-auto">
+                    <a href="{% url 'edit-proudct' i.product.id %}" class="btn btn-primary btn-sm w-100 mb-2">Edit</a>
+                    <a href="{% url 'delete-product' i.product.id %}" class="btn btn-danger btn-sm w-100">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

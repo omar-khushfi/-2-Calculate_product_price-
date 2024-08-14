@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Material
+    {% endblock title %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title text-center mb-4">Add New Material</h5>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

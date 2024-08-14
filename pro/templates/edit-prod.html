@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+    {% block title %}
+   edit product
+    {% endblock title %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <br>
+
+   <center> <button type="submit" class="btn btn-primary w-100">save</button></center>
+    </form> 
+</div>
+</div>
+    <br>
+    <a class="btn btn-secondary" href="{% url 'edit-material-product' product.id %}">edit material for this product</a>
+
+{% endblock content %}

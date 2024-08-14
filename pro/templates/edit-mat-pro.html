@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Materials for Product
+{% endblock title %}
+
+{% block content %}
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success w-100">Add Material</button>
+        </form>
+    </div>
+</div>
+<br>
+    {% for i in con %}
+    <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert">
+       <div>
+           <strong>{{ i.material.name }}</strong>
+           <p class="mb-0">Weight: {{ i.weight }}</p>
+       </div>
+       <a href="{% url 'delete-material-product' i.id %}" class="btn btn-danger">Delete</a>
+    </div>
+
+    {% endfor %}
+   
+{% endblock content %}
